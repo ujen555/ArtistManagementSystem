@@ -1,0 +1,193 @@
+
+.wrapper {
+  padding-left: 11.8%;
+    padding-right: 11.8%;
+    @media (max-width: 1440px) {
+      padding-left: 8%;
+      padding-right: 8%;
+    }
+    @media screen and (max-width: 1024px) {
+      padding-left: 5%;
+      padding-right: 5%;
+    }
+    @media screen and (max-width: 768px) {
+      padding-left: 3.5%;
+      padding-right: 3.5%;
+    }
+    &--left {
+      padding-left: 15%;
+      padding-right: 0%;
+      @media (max-width: 1300px) {
+        padding-left: 10%;
+        padding-right: 0%;
+      }
+      @media screen and (max-width: 1024px) {
+        padding-left: 5%;
+        padding-right: 0%;
+      }
+      @media screen and (max-width: 768px) {
+        padding-left: 3.5%;
+        padding-right: 3.5%;
+      }
+    }
+    &--right {
+      padding-left: 0%;
+      padding-right: 15%;
+      @media (max-width: 1300px) {
+        padding-left: 0%;
+        padding-right: 10%;
+      }
+      @media screen and (max-width: 1024px) {
+        padding-left: 0%;
+        padding-right: 5%;
+      }
+      @media screen and (max-width: 768px) {
+        padding-left: 3.5%;
+        padding-right: 3.5%;
+      }
+    }
+  }
+
+
+  .cIcon{
+    font-size: 2.8rem;
+  }
+
+
+  .title{
+    font-size: 3.8rem;
+    color: $primary-black;
+    font-weight: 400;
+  }
+
+  .cForm{
+    &__fieldgroup{
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 15px;
+      &--2{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+    }
+    &__label{
+      font-size: 1.2rem;
+      color: $primary-black;
+      text-transform: capitalize;
+    }
+    &__formControl{
+      border: 1px solid $border ;
+      outline: none;
+      background-color: $washWhite;
+      border-radius: 6px;
+      font-size: 1.3rem;
+      padding: 6px 10px;
+      &:focus{
+        border: 1px solid $primary-green;
+      }
+    }
+    &__buttons{
+      margin-top:10px;
+    }
+    &__error{
+      color: $danger;
+      font-size: 1rem;
+      margin-top: 4px;
+    }
+  }
+
+
+ 
+.cBtn{
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  transition: all 300ms ease-in-out;
+  cursor: pointer;
+  &--green{
+      background: $primary-green;
+  }
+  &:hover{
+      background: $dark-blue;
+      span{
+          animation: btnTransform .5s linear;
+      }
+  }
+  span{
+      display: flex;
+      align-items: center;
+      text-transform: capitalize;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 1.6rem;
+      line-height: 24px;
+      color: #FFFFFF;
+      padding: 8px 18px;
+  }
+  &--white{
+      background-color: #fff;
+      span{
+          color: #6B1310 ;
+      }
+      &:hover{
+          span{
+              color: #fff;
+          }
+      }
+  }
+  @keyframes btnTransform{
+      0%{
+          transform: translateX(0%);
+          opacity: 1;
+      }
+  
+      20%{
+          transform: translateX(-50%);
+          opacity: 0;
+      }
+  
+      60%{
+          transform: translateX(-100%);
+          opacity: 0;
+      }
+  
+      80%{
+          transform: translateX(50%);
+          opacity: 0;
+      }
+  
+      100%{
+          transform: translateX(0%);
+      }
+  }
+
+  @keyframes btnTransformY {
+      0%{
+          transform: translateY(0%);
+          opacity: 1;
+      }
+  
+      20%{
+          transform: translateY(-50%);
+          opacity: 0;
+      }
+  
+      60%{
+          transform: translateY(-100%);
+          opacity: 0;
+      }
+  
+      80%{
+          transform: translateY(50%);
+          opacity: 0;
+      }
+  
+      100%{
+          transform: translateY(0%);
+      }
+  }
+}
