@@ -1,7 +1,8 @@
 import express from 'express';
 import dotenv from "dotenv";
-import authRouter from './routes/authRoutes.js';
 import cors from 'cors';
+import authRouter from './routes/authRoutes.js';
+import userRoutes from './routes/userRoutes.js';
 
 dotenv.config();
 const app=express();
@@ -10,6 +11,7 @@ const app=express();
 app.use(cors());
 app.use(express.json());
 app.use('/auth',authRouter);
+app.use('/users',userRoutes);
 
 //routes
 

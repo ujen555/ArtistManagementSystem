@@ -11,15 +11,25 @@ import {
 } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { ToastContainer } from 'react-toastify';
+import PrivateRoute from './components/PrivateRoute.jsx';
+import Login from './pages/Login.jsx';
+import Dashboard from './pages/Dashboard.jsx';
 
 const router=createBrowserRouter([
   {
     path:'/',
-    element:<App/>
+    element:
+      <PrivateRoute>
+        <Dashboard></Dashboard>
+      </PrivateRoute>
   },
   {
     path:'/register',
     element:<Register></Register>
+  },
+  {
+    path:'/login',
+    element:<Login></Login>
   }
 ])
 

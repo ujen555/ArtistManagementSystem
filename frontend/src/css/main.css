@@ -128,6 +128,24 @@ ul {
   font-weight: 400;
 }
 
+.cForm__togglePassword {
+  position: absolute;
+  right: 0px;
+  background-color: transparent;
+  border: none;
+}
+.cForm__togglePassword .cIcon {
+  font-size: 2rem;
+}
+.cForm__inputWrapper {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  position: relative;
+}
+.cForm__inputWrapper .cForm__formControl {
+  width: 100%;
+}
 .cForm__fieldgroup {
   display: flex;
   flex-direction: column;
@@ -160,8 +178,20 @@ ul {
 }
 .cForm__error {
   color: #f80053;
-  font-size: 1rem;
+  font-size: 1.1rem;
   margin-top: 4px;
+}
+.cForm__helperText {
+  font-size: 1.3rem;
+  margin-top: 20px;
+  text-align: center;
+  color: #141414;
+}
+.cForm__link {
+  color: #108A00;
+}
+.cForm__link:hover {
+  color: #2f4858;
 }
 
 .cBtn {
@@ -190,14 +220,14 @@ ul {
   font-weight: 400;
   font-size: 1.6rem;
   line-height: 24px;
-  color: #FFFFFF;
+  color: #ffffff;
   padding: 8px 18px;
 }
 .cBtn--white {
   background-color: #fff;
 }
 .cBtn--white span {
-  color: #6B1310;
+  color: #6b1310;
 }
 .cBtn--white:hover span {
   color: #fff;
@@ -245,7 +275,44 @@ ul {
   }
 }
 
-.register {
+.loadingWrapper {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* HTML: <div class="loader"></div> */
+.loader {
+  width: 40px;
+  aspect-ratio: 1;
+  --c: linear-gradient(#108A00 0 0);
+  --r1: radial-gradient(farthest-side at bottom,#108A00 93%,#108A00);
+  --r2: radial-gradient(farthest-side at top ,#108A00 93%,#108A00);
+  background: var(--c), var(--r1), var(--r2), var(--c), var(--r1), var(--r2), var(--c), var(--r1), var(--r2);
+  background-repeat: no-repeat;
+  animation: l2 1s infinite alternate;
+}
+
+@keyframes l2 {
+  0%, 25% {
+    background-size: 8px 0, 8px 4px, 8px 4px, 8px 0, 8px 4px, 8px 4px, 8px 0, 8px 4px, 8px 4px;
+    background-position: 0 50%, 0 calc(50% - 2px), 0 calc(50% + 2px), 50% 50%, 50% calc(50% - 2px), 50% calc(50% + 2px), 100% 50%, 100% calc(50% - 2px), 100% calc(50% + 2px);
+  }
+  50% {
+    background-size: 8px 100%, 8px 4px, 8px 4px, 8px 0, 8px 4px, 8px 4px, 8px 0, 8px 4px, 8px 4px;
+    background-position: 0 50%, 0 calc(0% - 2px), 0 calc(100% + 2px), 50% 50%, 50% calc(50% - 2px), 50% calc(50% + 2px), 100% 50%, 100% calc(50% - 2px), 100% calc(50% + 2px);
+  }
+  75% {
+    background-size: 8px 100%, 8px 4px, 8px 4px, 8px 100%, 8px 4px, 8px 4px, 8px 0, 8px 4px, 8px 4px;
+    background-position: 0 50%, 0 calc(0% - 2px), 0 calc(100% + 2px), 50% 50%, 50% calc(0% - 2px), 50% calc(100% + 2px), 100% 50%, 100% calc(50% - 2px), 100% calc(50% + 2px);
+  }
+  95%, 100% {
+    background-size: 8px 100%, 8px 4px, 8px 4px, 8px 100%, 8px 4px, 8px 4px, 8px 100%, 8px 4px, 8px 4px;
+    background-position: 0 50%, 0 calc(0% - 2px), 0 calc(100% + 2px), 50% 50%, 50% calc(0% - 2px), 50% calc(100% + 2px), 100% 50%, 100% calc(0% - 2px), 100% calc(100% + 2px);
+  }
+}
+.authForm {
   display: grid;
   grid-template-columns: 1fr 1.5fr;
   margin: auto auto;
@@ -254,25 +321,28 @@ ul {
   background-color: #fdfffd;
   gap: 10%;
 }
+.authForm--colReverse {
+  grid-template-columns: 1.5fr 1fr;
+}
 @media (max-width: 1439px) {
-  .register {
+  .authForm {
     gap: 5%;
   }
 }
 @media (max-width: 767px) {
-  .register {
+  .authForm {
     display: flex;
     align-items: center;
     justify-content: center;
   }
 }
-.register__col {
+.authForm__col {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 }
-.register__intro {
+.authForm__intro {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -283,34 +353,37 @@ ul {
   width: 100%;
   margin-bottom: 15px;
 }
-.register__intro .cIcon {
+.authForm__intro .cIcon {
   color: #108A00;
 }
-.register__subIntro {
+.authForm__subIntro {
   font-size: 1.4rem;
   line-height: 140%;
+  text-align: left;
+  margin-left: 0px;
+  margin-right: auto;
 }
-.register__heroImage {
+.authForm__heroImage {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 20px;
 }
-.register__imageWrapper {
+.authForm__imageWrapper {
   width: 100%;
   height: 100%;
   overflow: hidden;
   padding: 25px 0px;
 }
 @media (max-width: 767px) {
-  .register__imageWrapper {
+  .authForm__imageWrapper {
     display: none;
   }
 }
-.register__form {
+.authForm__form {
   margin-top: 30px;
   width: 100%;
 }
-.register__button {
+.authForm__button {
   width: 100%;
 }

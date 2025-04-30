@@ -1,12 +1,13 @@
 import { useMutation } from '@tanstack/react-query';
-import registerUser from '../api/authService';
 import { toast } from 'react-toastify';
+import { loginUser } from '../api/authService';
 
-const useRegister = (onSuccessCallback) => {
+const useLogin = (onSuccessCallback) => {
   return useMutation({
-    mutationFn:registerUser,
+    mutationFn:loginUser,
     onSuccess:(data)=>{
         toast.success(data.message);
+        localStorage.setItem("authToken", data.token);
         if (onSuccessCallback) onSuccessCallback();
     },
     onError:(error)=>{
@@ -16,10 +17,10 @@ const useRegister = (onSuccessCallback) => {
           toast.error(errMsg);
         });
       } else {
-        toast.error(errorMessage || "Registration failed! Please try again.");
+        toast.error(errorMessage || "User Login failed! Please try again.");
       }
     }
   })
 };
 
-export default useRegister;
+export default useLogin;

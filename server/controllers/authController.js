@@ -1,6 +1,7 @@
 import { connectToDatabase } from "../lib/db.js";
-import { registerValidationSchema } from "../schemas/validationSchema.js";
+import { loginValidationSchema, registerValidationSchema } from "../schemas/validationSchema.js";
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 
 const register=async (req, res)=>{
    try {
@@ -26,7 +27,29 @@ const register=async (req, res)=>{
 }
 
 const login=async (req,res)=>{
-
+    try {
+        await loginValidationSchema.validate(req.body, { abortEarly: false });
+        const { email, password } = req.body;
+        const db=await connectToDatabase();
+        const [rows] = await db.query('SELECT * FROM `user` WHERE email = ?', [email]);
+        if (rows.length === 0) {
+            return res.status(404).json({ message: 'User does not exist'});
+        }
+        const isMatch= await bcrypt.compare(password,rows[0].password);
+        if(!isMatch){
+            return res.status(401).json({ message: 'Incorrect Password' });
+        }
+        const token=jwt.sign({
+            id:rows[0].id,
+            first_name:rows[0].first_name,
+            last_name:rows[0].last_name,
+            email: rows[0].email,
+            role: rows[0].role
+        },process.env.JWT_SECRET, {expiresIn:'3h'})
+        return res.status(201).json({token:token,message:"User authenticated successfully"});
+    } catch (error) {
+        return res.status(500).json(error.message);
+    }
 }
 
 export {login,register};
