@@ -142,6 +142,19 @@
       animation: btnTransform 0.5s linear;
     }
   }
+  &:disabled{
+    &:hover{
+      transition: none;
+      background-color: inherit;
+      span{
+        color:  $border;
+        animation: none;
+      }
+    }
+    span{
+      color:  $border;
+    }
+  }
   span {
     display: flex;
     align-items: center;
@@ -254,6 +267,85 @@
     background-size: 8px 100%,8px 4px, 8px 4px,8px 100%,8px 4px,8px 4px,8px 100%,8px 4px,8px 4px;
     background-position: 0 50%,0 calc(0% - 2px),0 calc(100% + 2px),50% 50%,50% calc(0% - 2px),50% calc(100% + 2px),100% 50%,100% calc(0% - 2px),100% calc(100% + 2px);
  }
+} 
+
+.componentPanel{
+  color: $primary-black;
+  background: $white;
+  border: 1px solid rgba(36, 39, 44, .1);
+  border-radius: 16px;
+  box-shadow: 0 1px 2px rgba(36, 39, 44, .1);
+  &__header{
+    padding: 15px 20px;
+    border-bottom: 1px solid $border;
+    &__title{
+      font-size: 2.3rem;
+      color: $primary-green;
+      font-weight: 600;
+    }
+  }
+  &__body{
+  }
 }
 
+.cTable{
+  width: 100%;
+  text-align: left;
+  border-spacing: 0px;
 
+  &Wrapper{
+    max-width: calc(100vw - 130px);
+    width: 100%;
+    overflow: auto;
+  }
+  thead{
+    th{
+      padding: 12px 20px;
+      font-size: 1.6rem;
+      line-height: 140%;
+      font-weight: bold;
+    }
+  }
+  tbody{
+    tr{
+      &:nth-child(odd){
+        background-color:#EBF9F1;
+      }
+      td{
+        padding: 8px 20px;
+        font-size: 1.4rem;
+        font-weight: 400;
+      }
+    }
+  }
+  &__pagination{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid $border;
+    padding: 12px 15px;
+    &__btn{
+      background-color: transparent;
+      border: 1px solid $border;
+      padding: 0px;
+      span{
+        display: flex;
+        gap: 6px;
+        color: $primary-black;
+        font-size: 1.2rem;
+        padding: 4px 10px;
+        transition: all 0.3s ease-in-out;
+      }
+      &:hover,&.active{
+        background-color: $primary-green;
+
+        span{
+          color: $white;
+        }
+      }
+    }
+    &__pages{
+      display: flex;
+    }
+  }
+}

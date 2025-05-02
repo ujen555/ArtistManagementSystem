@@ -212,6 +212,17 @@ ul {
 .cBtn:hover span {
   animation: btnTransform 0.5s linear;
 }
+.cBtn:disabled:hover {
+  transition: none;
+  background-color: inherit;
+}
+.cBtn:disabled:hover span {
+  color: #D4D7E3;
+  animation: none;
+}
+.cBtn:disabled span {
+  color: #D4D7E3;
+}
 .cBtn span {
   display: flex;
   align-items: center;
@@ -312,6 +323,76 @@ ul {
     background-position: 0 50%, 0 calc(0% - 2px), 0 calc(100% + 2px), 50% 50%, 50% calc(0% - 2px), 50% calc(100% + 2px), 100% 50%, 100% calc(0% - 2px), 100% calc(100% + 2px);
   }
 }
+.componentPanel {
+  color: #141414;
+  background: #fff;
+  border: 1px solid rgba(36, 39, 44, 0.1);
+  border-radius: 16px;
+  box-shadow: 0 1px 2px rgba(36, 39, 44, 0.1);
+}
+.componentPanel__header {
+  padding: 15px 20px;
+  border-bottom: 1px solid #D4D7E3;
+}
+.componentPanel__header__title {
+  font-size: 2.3rem;
+  color: #108A00;
+  font-weight: 600;
+}
+.cTable {
+  width: 100%;
+  text-align: left;
+  border-spacing: 0px;
+}
+.cTableWrapper {
+  max-width: calc(100vw - 130px);
+  width: 100%;
+  overflow: auto;
+}
+.cTable thead th {
+  padding: 12px 20px;
+  font-size: 1.6rem;
+  line-height: 140%;
+  font-weight: bold;
+}
+.cTable tbody tr:nth-child(odd) {
+  background-color: #EBF9F1;
+}
+.cTable tbody tr td {
+  padding: 8px 20px;
+  font-size: 1.4rem;
+  font-weight: 400;
+}
+.cTable__pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #D4D7E3;
+  padding: 12px 15px;
+}
+.cTable__pagination__btn {
+  background-color: transparent;
+  border: 1px solid #D4D7E3;
+  padding: 0px;
+}
+.cTable__pagination__btn span {
+  display: flex;
+  gap: 6px;
+  color: #141414;
+  font-size: 1.2rem;
+  padding: 4px 10px;
+  transition: all 0.3s ease-in-out;
+}
+.cTable__pagination__btn:hover, .cTable__pagination__btn.active {
+  background-color: #108A00;
+}
+.cTable__pagination__btn:hover span, .cTable__pagination__btn.active span {
+  color: #fff;
+}
+.cTable__pagination__pages {
+  display: flex;
+}
+
 .authForm {
   display: grid;
   grid-template-columns: 1fr 1.5fr;
@@ -386,4 +467,142 @@ ul {
 }
 .authForm__button {
   width: 100%;
+}
+
+.dashboardLayout {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+}
+.dashboardLayout__outlet {
+  padding: 24px;
+  background-color: #EEF3F4;
+}
+.dashboardLayout__topBar {
+  height: 64px;
+  border-bottom: 1px solid #D4D7E3;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px;
+}
+.dashboardLayout__topBar__heading {
+  font-size: 2rem;
+}
+@media (max-width: 1023px) {
+  .dashboardLayout__topBar__heading {
+    display: none;
+  }
+}
+@media (max-width: 1023px) {
+  .dashboardLayout__topBar__heading span {
+    display: none;
+  }
+}
+.dashboardLayout__col {
+  width: 100%;
+}
+
+.userInfoPill {
+  display: flex;
+  align-items: center;
+  padding: 2px 15px;
+  padding-right: 30px;
+  gap: 10px;
+  font-size: 1.6rem;
+  border-radius: 10px;
+  text-transform: capitalize;
+}
+.userInfoPill .cIcon {
+  font-size: 3.2rem;
+  border: 2px solid #141414;
+  padding: 6px;
+  border-radius: 50%;
+  color: #141414;
+}
+
+.hamburger {
+  position: relative;
+  height: 20px;
+  width: 25px;
+  background-color: transparent;
+  border: none;
+  padding: 0px;
+  cursor: pointer;
+}
+.hamburger span, .hamburger::after, .hamburger::before {
+  background-color: #141414;
+  height: 2px;
+  width: 100%;
+  position: absolute;
+  border-radius: 10px;
+  border: none;
+  transition: all 0.3s ease-in-out;
+}
+.hamburger span {
+  top: 50%;
+  left: 0px;
+  transform: translateY(-50%);
+}
+.hamburger::after {
+  content: "";
+  bottom: 0px;
+  left: 0px;
+}
+.hamburger::before {
+  content: "";
+  top: 0px;
+  left: 0px;
+}
+.hamburger.open span {
+  width: 75%;
+  left: 0px;
+}
+.hamburger.open::after {
+  width: 40%;
+}
+
+.ps-sidebar-container {
+  container-type: inline-size;
+}
+
+.ps-menu-icon {
+  justify-content: flex-start;
+}
+
+.appLogo {
+  font-size: 4rem;
+  font-weight: 900;
+  letter-spacing: 3px;
+  padding: 20px;
+  transition: all 0.2s ease-in-out;
+}
+
+@container (max-width: 209px) {
+  .appLogo {
+    font-size: 1.3rem !important;
+  }
+}
+main {
+  height: calc(100vh - 64px);
+}
+
+.users__fullName {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.users__fullName .cIcon {
+  color: #108A00;
+  font-size: 3.5rem;
+  min-width: 35px;
+}
+.users__fullName__info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.users__fullName__info__phone {
+  color: #7B808A;
 }

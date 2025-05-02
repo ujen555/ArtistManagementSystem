@@ -5,5 +5,10 @@ const getCurrentUser = async () => {
   return response.data;
 };
 
+const getUsers = async ({page=1,limit=10})=>{
+  const response = await axiosInstance.get(`/users?page=${page}&limit=${limit}`);
+  return response.data;
+}
 
-export {getCurrentUser};
+
+export {getCurrentUser,getUsers};

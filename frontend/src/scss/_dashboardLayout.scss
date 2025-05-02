@@ -1,0 +1,122 @@
+.dashboardLayout {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  &__outlet{
+    padding: 24px;
+    background-color: #EEF3F4;
+  }
+  &__topBar {
+    height: 64px;
+    border-bottom: 1px solid $border;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px;
+    &__heading{
+        font-size: 2rem;
+        @media(max-width:1023px){
+            display: none;
+        }
+        span{
+            @media(max-width:1023px){
+                display: none;
+            }
+        }
+    }
+  }
+  &__col{
+    width: 100%;
+  }
+}
+
+.userInfoPill{
+    display: flex;
+    align-items: center;
+    padding: 2px 15px;
+    padding-right: 30px;
+    gap: 10px;
+    font-size: 1.6rem;
+    border-radius: 10px;
+    text-transform: capitalize;
+
+    .cIcon{
+        font-size:3.2rem;
+        border: 2px solid $primary-black;
+        padding: 6px;
+        border-radius: 50%;
+        color:$primary-black;
+    }
+}
+
+.hamburger {
+  position: relative;
+  height: 20px;
+  width: 25px;
+  background-color: transparent;
+  border: none;
+  padding: 0px;
+  cursor: pointer;
+  span,
+  &::after,
+  &::before {
+    background-color: $primary-black;
+    height: 2px;
+    width: 100%;
+    position: absolute;
+    border-radius: 10px;
+    border: none;
+    transition: all 0.3s ease-in-out;
+  }
+  span {
+    top: 50%;
+    left: 0px;
+    transform: translateY(-50%);
+  }
+  &::after {
+    content: "";
+    bottom: 0px;
+    left: 0px;
+  }
+  &::before {
+    content: "";
+    top: 0px;
+    left: 0px;
+  }
+
+  &.open {
+    span {
+      width: 75%;
+      left: 0px;
+    }
+    &::after {
+      width: 40%;
+    }
+  }
+}
+
+.ps-sidebar-container {
+  container-type: inline-size;
+}
+
+.ps-menu-icon {
+  justify-content: flex-start;
+}
+.appLogo {
+  font-size: 4rem;
+  font-weight: 900;
+  letter-spacing: 3px;
+  padding: 20px;
+  transition: all 0.2s ease-in-out;
+}
+@container (max-width: 209px) {
+  .appLogo {
+    font-size: 1.3rem !important;
+  }
+}
+
+
+main{
+    height: calc( 100vh - 64px)
+}

@@ -1,0 +1,20 @@
+.users{
+    &__fullName{
+        display: flex;
+        align-items: center;
+        gap:15px;
+        .cIcon{
+            color: $primary-green;
+            font-size:3.5rem;
+            min-width: 35px;
+        }
+        &__info{
+            display: flex;
+            flex-direction: column;
+            gap:2px;
+            &__phone{
+                color: #7B808A;
+            }
+        }
+    }
+}

@@ -1,8 +1,10 @@
 import React from 'react'
 
-function Loader() {
+function Loader({customStyles={}}) {
   return (
-    <div className='loader'></div>
+    <div className='loadingWrapper' style={customStyles}>
+      <div className='loader'></div>
+     </div>
   )
 }
 
