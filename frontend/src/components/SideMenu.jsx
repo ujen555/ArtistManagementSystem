@@ -9,7 +9,9 @@ function SideMenu() {
    const {isCollapsed}=useSidebarContext();
     return (
       <> 
-        <Sidebar collapsed={isCollapsed} backgroundColor="#fff" >
+        <Sidebar collapsed={isCollapsed} backgroundColor="#fff"   collapsedWidth="0px" rootStyles={{
+          borderWidth:'0px'
+        }} >
           <h1 className="appLogo">
             AMS
           </h1>

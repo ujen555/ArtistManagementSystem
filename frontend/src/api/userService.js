@@ -10,5 +10,22 @@ const getUsers = async ({page=1,limit=10})=>{
   return response.data;
 }
 
+const getUserById = async (id)=>{
+  const response = await axiosInstance.get(`/users/${id}`);
+  return response.data;
+}
 
-export {getCurrentUser,getUsers};
+
+const updateUser = async (id,payload)=>{
+  const response = await axiosInstance.put(`/users/${id}`,payload);
+  return response.data;
+}
+
+const deleteUser = async (id)=>{
+  const response = await axiosInstance.delete(`/users/${id}`);
+  return response.data;
+}
+
+
+
+export {getCurrentUser,getUsers,getUserById,updateUser,deleteUser};

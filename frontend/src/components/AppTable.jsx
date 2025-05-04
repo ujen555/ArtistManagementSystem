@@ -5,8 +5,8 @@ const AppTable = ({ columns, data ,pagesArray,setPage,isPreviousData, page,total
     const prevPage=()=>setPage(prev=>prev-1);
     return (
         <>
-        <div className="cTableWrapper">
-            <table className="cTable">
+        <div className="cTableWrapper" style={{overflow:'auto'}}>
+            <table className="cTable" >
         <thead>
             <tr className="">
             {columns.map((col, index) => (

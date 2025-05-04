@@ -22,6 +22,7 @@ const register=async (req, res)=>{
       if (error.name === 'ValidationError') {
           return res.status(400).json({ message: error.errors });
       }
+      console.log(error);
       return res.status(500).json({ message: 'Server error' });
   }
 }

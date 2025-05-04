@@ -4,7 +4,7 @@ const SidebarContext=createContext(undefined);
 
 export default function SidebarContextProvider({children}){
     const [isCollapsed,setIsCollapsed]=useState(false);
-    const [width,setWidth]=useState("");
+    const [width,setWidth]=useState(window.innerWidth);
   
     function getSize(){
       setWidth(window.innerWidth);
@@ -12,7 +12,7 @@ export default function SidebarContextProvider({children}){
   
     useEffect(()=>{
       window.addEventListener('resize',getSize);
-      if(width<1023){
+      if(width<1439){
         setIsCollapsed(true)
       }
       else{

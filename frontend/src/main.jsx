@@ -16,32 +16,74 @@ import Login from './pages/Login.jsx';
 import DashboardLayout from './layouts/DashboardLayout.jsx';
 import SidebarContextProvider from './context/SidebarContext.jsx';
 import Users from './pages/Users.jsx';
+import RegisterForm from './components/RegisterForm.jsx';
+import AddUser from './pages/AddUser.jsx';
+import EditUser from './pages/EditUser.jsx';
+import Unauthorized from './pages/Unauthorized.jsx';
 
-const router=createBrowserRouter([
+const router = createBrowserRouter([
   {
-    path:'/',
-    element:
-      <PrivateRoute>
-        <DashboardLayout></DashboardLayout>
-      </PrivateRoute>,
+    path: '/',
+    element: (
+      <PrivateRoute allowedRoles={['super_admin', 'artist_manager', 'artist']}>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
     children: [
       {
         path: 'users',
-        element: <Users/>
-      }
-    ]
+        element: (
+          <PrivateRoute allowedRoles={['super_admin']}>
+            <Users />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: 'users/add',
+        element: (
+          <PrivateRoute allowedRoles={['super_admin']}>
+            <AddUser />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: 'users/edit/:id',
+        element: (
+          <PrivateRoute allowedRoles={['super_admin']}>
+            <EditUser />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: '/unauthorized',
+        element: <Unauthorized />,
+      },
+    ],
   },
   {
-    path:'/register',
-    element:<Register></Register>
+    path: '/register',
+    element: <Register />,
   },
   {
-    path:'/login',
-    element:<Login></Login>
+    path: '/login',
+    element: <Login />,
   }
-])
+]);
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 1, 
+      refetchOnWindowFocus: false, 
+      staleTime: 5 * 60 * 1000, 
+      cacheTime: 10 * 60 * 1000,
+      suspense: false,
+    },
+    mutations: {
+      retry: 0,
+    },
+  },
+});
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

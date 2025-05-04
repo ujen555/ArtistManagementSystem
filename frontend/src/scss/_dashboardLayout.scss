@@ -5,6 +5,7 @@
   &__outlet{
     padding: 24px;
     background-color: #EEF3F4;
+    display: flex;
   }
   &__topBar {
     height: 64px;
@@ -102,6 +103,14 @@
 
 .ps-menu-icon {
   justify-content: flex-start;
+}
+
+.ps-sidebar-root {
+  @media(max-width:1439px){
+    position: absolute !important;
+    top: 64px;
+    height: calc(100vh - 64px);
+  }
 }
 .appLogo {
   font-size: 4rem;

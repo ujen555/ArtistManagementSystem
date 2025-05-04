@@ -5,6 +5,7 @@ export const useCurrentUser = () =>
   useQuery({
     queryKey: ['currentUser'],
     queryFn: getCurrentUser,
+    enabled:!!localStorage.getItem('authToken'),
     staleTime: 1000 * 60 * 10,
     retry: false,
   });

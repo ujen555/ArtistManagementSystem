@@ -136,6 +136,12 @@
   &--green {
     background: $primary-green;
   }
+  &--red {
+    background: $danger;
+  }
+  &--blue{
+    background-color: $light-blue;
+  }
   &:hover {
     background: $dark-blue;
     span {
@@ -165,6 +171,7 @@
     line-height: 24px;
     color: #ffffff;
     padding: 8px 18px;
+    gap: 8px;
   }
   &--white {
     background-color: #fff;
@@ -275,8 +282,12 @@
   border: 1px solid rgba(36, 39, 44, .1);
   border-radius: 16px;
   box-shadow: 0 1px 2px rgba(36, 39, 44, .1);
+  width: 100%;
+  height: max-content;
   &__header{
     padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
     border-bottom: 1px solid $border;
     &__title{
       font-size: 2.3rem;
@@ -285,25 +296,27 @@
     }
   }
   &__body{
+    padding: 15px 20px;
+    padding-top: 0px;
   }
 }
 
+.cTableWrapper{
+  width: 100%;
+  overflow: auto;
+}
 .cTable{
   width: 100%;
   text-align: left;
   border-spacing: 0px;
 
-  &Wrapper{
-    max-width: calc(100vw - 130px);
-    width: 100%;
-    overflow: auto;
-  }
   thead{
     th{
       padding: 12px 20px;
       font-size: 1.6rem;
       line-height: 140%;
       font-weight: bold;
+      white-space: nowrap;
     }
   }
   tbody{
@@ -315,6 +328,7 @@
         padding: 8px 20px;
         font-size: 1.4rem;
         font-weight: 400;
+        white-space: nowrap;
       }
     }
   }
@@ -324,6 +338,7 @@
     justify-content: space-between;
     border-top: 1px solid $border;
     padding: 12px 15px;
+    padding-bottom: 0px;
     &__btn{
       background-color: transparent;
       border: 1px solid $border;
@@ -348,4 +363,79 @@
       display: flex;
     }
   }
+}
+
+.action__btns{
+  display: flex;
+  gap: 5px;
+}
+
+
+
+
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
+  z-index: 100000000000000;
+}
+
+.modal-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* Modal Container */
+.modal-container {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  max-width: 90%;
+  transform: scale(0.9);
+  transition: transform 0.3s ease-out;
+}
+
+.modal-overlay.open .modal-container {
+  transform: scale(1);
+}
+
+/* Close Button */
+.close-btn {
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border-radius: 50%;
+  aspect-ratio: 1/1;
+  span{
+    padding: 8px;
+  }
+}
+
+.modal-body{
+  font-size: 1.4rem;
+  margin-top: 20px;
+}
+
+.highlight-text{
+  color: $primary-green;
+}
+
+.modal-footer{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  justify-content: center;
+  padding-top: 24px;
 }
