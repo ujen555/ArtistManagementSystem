@@ -9,7 +9,6 @@ const useUpdateArtist= (artistId,onSuccessCallback) => {
       onSuccess:(data,variables)=>{
           toast.success(data.message);
 
-          // Update individual user cache
           queryClient.setQueryData(['artistById',String(artistId)], (oldData) => {
             if (!oldData) return;
             return {...variables,dob:variables.dob.toISOString()};

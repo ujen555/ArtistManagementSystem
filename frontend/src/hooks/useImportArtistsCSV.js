@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
-import { importArtistsCSV } from '../api/artistsService';  // Make sure this matches your service import path
+import { importArtistsCSV } from '../api/artistsService';
 
 const useImportArtistsCSV = (onSuccessCallback) => {
   const queryClient = useQueryClient();

@@ -76,7 +76,7 @@ const columns = [
           </button>
          
           </RoleGuard>
-          <RoleGuard roles={['super_admin']}>
+          <RoleGuard roles={['super_admin','artist_manager']}>
           <button className="cBtn cBtn--blue" onClick={()=>navigate(`/artists/${row.id}/songs`)} disabled={isExporting}>
             <span><FaMusic/>Songs</span>
           </button>

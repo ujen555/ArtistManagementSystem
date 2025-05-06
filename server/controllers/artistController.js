@@ -35,7 +35,6 @@ const createArtist = async (req, res) => {
         if (existingArtist.length) {
           return res.status(400).json({ message: 'Artist already exists for this user' });
         }
-    
         const [result] = await db.query(
           'INSERT INTO artist (name, dob, gender, address, first_release_year, no_of_albums_released, user_id) VALUES (?, ?, ?, ?, ?, ?, ?)',
           [name, dob, gender, address, first_release_year, no_of_albums_released, user_id]
@@ -202,7 +201,7 @@ const createArtist = async (req, res) => {
                 ...row,
                 first_release_year: row.first_release_year ? Number(row.first_release_year) : null,
                 no_of_albums_released: row.no_of_albums_released ? Number(row.no_of_albums_released) : null,
-                dob: row.dob || null,
+                dob: row.dob ? new Date(row.dob).toISOString().split('T')[0] : null,
                 gender: row.gender || null,
                 address: row.address || null,
                 name: row.name?.trim(),
@@ -244,7 +243,6 @@ const createArtist = async (req, res) => {
               warnings.push(msg);
             }
           }
-  
           if (validArtists.length > 0) {
             await db.query(
               `INSERT INTO artist (name, dob, gender, address, first_release_year, no_of_albums_released, user_id)

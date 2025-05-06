@@ -28,7 +28,7 @@ function FormFileInput({
             id={name}
             type="file"
             className="cForm__formControl"
-            {...field}  // Pass react-hook-form's field props
+            {...field} 
             accept={accept}
             multiple={multiple}
             onChange={(e) => {

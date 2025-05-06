@@ -1,4 +1,3 @@
-// src/components/FormSelect.jsx
 import { Controller } from "react-hook-form";
 
 function FormSelect({ control, name, label, options, errors,disabled = false }) {
