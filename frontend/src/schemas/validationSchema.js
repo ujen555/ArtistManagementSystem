@@ -37,4 +37,48 @@ export const registerValidationSchema = userValidationSchema.shape({
 });
 
 
+export const artistValidationSchema =yup.object().shape({
+  name: yup.string().required('Name is required'),
+  genre: yup.string().optional(),
+  dob: yup.date()
+  .typeError('Please provide a valid date of birth')
+  .nullable(),
+  gender: yup.mixed().oneOf(['m', 'f', 'o']).required("Gender is Required"),
+  first_release_year: yup
+  .number()
+  .typeError('First release year must be a number')
+  .integer('First release year must be an integer')
+  .min(1900, 'Year must be 1900 or later')
+  .max(new Date().getFullYear(), `Year cannot be in the future`)
+  .required('First release year is required'),
+  address: yup.string().nullable(),
+  no_of_albums_released: yup
+  .number()
+  .typeError('Number of albums must be a number')
+  .integer('Number of albums must be an integer')
+  .min(0, 'Number of albums cannot be negative')
+  .required('Number of albums is required'),
 
+})
+
+export const artistRegisterValidationSchema = artistValidationSchema.shape({
+  user_id: yup.string().required('Artist is required'),
+});
+
+
+export const artistCsvValidationSchema =  artistValidationSchema.shape({
+  email: yup.string().email().required('Email is required') 
+});
+
+
+
+
+export const songValidationSchema = yup.object().shape({
+  title: yup.string().required('Title is required'),
+  album_name: yup.string().required('Album name is required'),
+  genre: yup.string().oneOf(['rnb', 'country', 'classic', 'rock', 'jazz'], 'Invalid genre').required('Genre is required'),
+});
+
+export const songRegisterValidationSchema =songValidationSchema.shape({
+  artist_id: yup.string().required('Artist ID is required'),
+});

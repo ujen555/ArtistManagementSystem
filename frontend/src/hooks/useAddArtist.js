@@ -1,19 +1,19 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import registerUser from '../api/authService';
 import { toast } from 'react-toastify';
+import { addArtist } from '../api/artistsService';
 
-const useRegister = (onSuccessCallback) => {
+const useAddArtist = (onSuccessCallback) => {
   const queryClient=useQueryClient();
   return useMutation({
-    mutationFn:registerUser,
+    mutationFn:addArtist,
     onSuccess:(data,variables)=>{
         toast.success(data.message);
-        const firstPageKey = ['/users', 1, 8];
+        const firstPageKey = ['/artists', 1, 8];
         queryClient.setQueryData(firstPageKey, old => {
           if (!old) return { results: [variables], total_data: 1 };
           return {
             ...old,
-            results: [{...variables,id:data.userId}, ...old.results].slice(0, 8),
+            results: [{...variables,id:data.artistId}, ...old.results].slice(0, 8),
             total_data: old.total_data + 1,
           };
         });
@@ -28,10 +28,10 @@ const useRegister = (onSuccessCallback) => {
           toast.error(errMsg);
         });
       } else {
-        toast.error(errorMessage || "Registration failed! Please try again.");
+        toast.error(errorMessage || "Artist creation failed! Please try again.");
       }
     }
   })
 };
 
-export default useRegister;
+export default useAddArtist;

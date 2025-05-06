@@ -1,3 +1,5 @@
+import { useCurrentUser } from "../hooks/useCurrentUser";
+
 const formatDate = (isoDate) => {
     return new Date(isoDate).toLocaleDateString('en-US', {
       year: 'numeric',
@@ -19,4 +21,18 @@ const formatDate = (isoDate) => {
     super_admin: 'Super Admin',
     artist: 'Artist'
   };
-  export {formatDate,GenderEnum,RoleEnum};
+
+  const GenreEnum = {
+    rnb: 'R&B',
+    country: 'Country',
+    classic: 'Classic',
+    rock: 'Rock',
+    jazz: 'Jazz'
+  };
+
+
+  function hasRole(user,allowedRoles){
+    if (!user || !user.role) return false;
+    return allowedRoles.includes(user.role);
+  }
+  export {formatDate,GenderEnum,RoleEnum,GenreEnum,hasRole};

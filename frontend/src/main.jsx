@@ -2,7 +2,6 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './css/main.css';
 import "react-toastify/dist/ReactToastify.css";
-import App from './App.jsx';
 import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 import Register from './pages/register.jsx';
 import {
@@ -16,10 +15,16 @@ import Login from './pages/Login.jsx';
 import DashboardLayout from './layouts/DashboardLayout.jsx';
 import SidebarContextProvider from './context/SidebarContext.jsx';
 import Users from './pages/Users.jsx';
-import RegisterForm from './components/RegisterForm.jsx';
 import AddUser from './pages/AddUser.jsx';
 import EditUser from './pages/EditUser.jsx';
 import Unauthorized from './pages/Unauthorized.jsx';
+import Artists from './pages/Artists.jsx';
+import AddArtist from './pages/AddArtist.jsx';
+import EditArtist from './pages/EditArtist.jsx';
+import Songs from './pages/Songs.jsx';
+import AddSong from './pages/AddSong.jsx';
+import EditSong from './pages/EditSong.jsx';
+import DashboardHome from './pages/DashboardHome.jsx';
 
 const router = createBrowserRouter([
   {
@@ -30,6 +35,14 @@ const router = createBrowserRouter([
       </PrivateRoute>
     ),
     children: [
+      {
+        index: true,
+        element: (
+          <PrivateRoute allowedRoles={['super_admin', 'artist_manager', 'artist']}>
+            <DashboardHome/>
+          </PrivateRoute>
+        ),
+      },
       {
         path: 'users',
         element: (
@@ -51,6 +64,63 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute allowedRoles={['super_admin']}>
             <EditUser />
+          </PrivateRoute>
+        ),
+      },
+
+      {
+        path: 'artists',
+        element: (
+          <PrivateRoute allowedRoles={['super_admin','artist_manager']}>
+            <Artists />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: 'artists/add',
+        element: (
+          <PrivateRoute allowedRoles={['artist_manager']}>
+            <AddArtist />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: 'artists/edit/:id',
+        element: (
+          <PrivateRoute allowedRoles={['artist_manager']}>
+            <EditArtist />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: 'artists/:id/songs',
+        element: (
+          <PrivateRoute allowedRoles={['artist_manager','super_admin','artist]']}>
+            <Songs />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: 'songs',
+        element: (
+          <PrivateRoute allowedRoles={['artist']}>
+            <Songs />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: 'songs/add',
+        element: (
+          <PrivateRoute allowedRoles={['artist']}>
+            <AddSong />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: 'songs/edit/:id',
+        element: (
+          <PrivateRoute allowedRoles={['artist']}>
+            <EditSong />
           </PrivateRoute>
         ),
       },

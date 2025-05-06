@@ -45,13 +45,14 @@ const columns = [
      render: (row) => (
       formatDate(row.dob)
   ) },
+  { header: 'Address', accessor: 'address'},
   { header: 'Gender', accessor: 'gender',render: (row) => GenderEnum[row.gender] || 'Unknown' },
   { header: 'Role', accessor: 'role', render: (row) => RoleEnum[row.role] || 'Unknown' },
   { header: 'Actions', render: (row) => {
       return (
         <div className="action__btns">
           <button className="cBtn cBtn--blue" onClick={()=>{
-            navigate(`/users/edit/${row.id}`);
+              navigate(`/users/edit/${row.id}`);
           }}>
             <span><FaEdit></FaEdit>Edit</span>
           </button>
@@ -84,7 +85,7 @@ return (
     <Modal isOpen={isModalOpen} closeModal={closeModal}>
         <h2 className="componentPanel__header__title">Confirm Delete</h2>
         <div className="modal-body">
-          <p>Are you sure you wanxt to Delete User <span className="highlight-text">{selectedUser?.first_name} {selectedUser?.last_name}</span></p>
+          <p>Are you sure you want to Delete User <span className="highlight-text">{selectedUser?.first_name} {selectedUser?.last_name}</span></p>
         </div>
         <div className="modal-footer">
           <button className="cBtn cBtn--green" onClick={confirmDelete} disabled={isDeleting}>

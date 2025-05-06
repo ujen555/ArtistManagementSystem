@@ -23,7 +23,6 @@ const updateUser=async (req,res)=>{
     const { id } = req.params;
 
     try {
-      // ✅ Validate input
       const validatedData = await userValidationSchema.validate(req.body, {
         abortEarly: false,
         stripUnknown: true,

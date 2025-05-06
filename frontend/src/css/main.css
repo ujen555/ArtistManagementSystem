@@ -119,6 +119,7 @@ html {
   font-size: 3.8rem;
   color: #141414;
   font-weight: 400;
+  text-transform: capitalize;
 }
 
 .cForm__togglePassword {
@@ -195,6 +196,7 @@ html {
   border: none;
   transition: all 300ms ease-in-out;
   cursor: pointer;
+  height: max-content;
 }
 .cBtn--green {
   background: #108A00;
@@ -342,10 +344,27 @@ html {
   font-size: 2.3rem;
   color: #108A00;
   font-weight: 600;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+.componentPanel__header__title span {
+  font-size: 1.8rem;
+}
+.componentPanel__header__btns {
+  display: flex;
+  gap: 8px;
+  align-items: center;
 }
 .componentPanel__body {
   padding: 15px 20px;
   padding-top: 0px;
+}
+.componentPanel__body__text {
+  margin-top: 25px;
+  font-size: 1.6rem;
+  line-height: 150%;
 }
 
 .cTableWrapper {
@@ -475,6 +494,17 @@ html {
   gap: 20px;
   justify-content: center;
   padding-top: 24px;
+}
+
+.warning {
+  color: #008cc8;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.success {
+  color: #108A00;
 }
 
 .page-wrap {
@@ -664,6 +694,9 @@ html {
   justify-content: space-between;
   padding: 24px;
 }
+.dashboardLayout__topBar__btns {
+  display: flex;
+}
 .dashboardLayout__topBar__heading {
   font-size: 2rem;
 }
@@ -679,6 +712,7 @@ html {
 }
 .dashboardLayout__col {
   width: 100%;
+  min-width: calc(100vw - 265px);
 }
 
 .userInfoPill {
@@ -762,6 +796,7 @@ html {
   letter-spacing: 3px;
   padding: 20px;
   transition: all 0.2s ease-in-out;
+  color: #108A00;
 }
 
 @container (max-width: 209px) {

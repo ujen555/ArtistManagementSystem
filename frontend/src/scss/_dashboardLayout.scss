@@ -15,6 +15,9 @@
     align-items: center;
     justify-content: space-between;
     padding: 24px;
+    &__btns{
+      display: flex;
+    }
     &__heading{
         font-size: 2rem;
         @media(max-width:1023px){
@@ -29,6 +32,7 @@
   }
   &__col{
     width: 100%;
+    min-width: calc(100vw - 265px);
   }
 }
 
@@ -118,6 +122,7 @@
   letter-spacing: 3px;
   padding: 20px;
   transition: all 0.2s ease-in-out;
+  color: $primary-green;
 }
 @container (max-width: 209px) {
   .appLogo {

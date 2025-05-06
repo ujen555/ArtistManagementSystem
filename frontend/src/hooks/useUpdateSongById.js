@@ -1,24 +1,24 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
-import { updateUser } from "../api/userService";
+import { updateSongById } from "../api/songsService";
 
-const useUpdateUser = (userId,onSuccessCallback) => {
+const useUpdateSongById= (songId,artist_id,onSuccessCallback) => {
   const queryClient=useQueryClient();
     return useMutation({
-      mutationFn:(payload)=>updateUser(userId,payload),
+      mutationFn:(payload)=>updateSongById(songId,payload),
       onSuccess:(data,variables)=>{
           toast.success(data.message);
 
-          queryClient.setQueryData(['userById',String(userId)], (oldData) => {
+          queryClient.setQueryData(['songById',String(songId)], (oldData) => {
             if (!oldData) return;
-            return {...variables,dob:variables.dob.toISOString()};
+            return variables;
           })
-          queryClient.getQueryCache().findAll({ queryKey: ['/users'] }).forEach(({ queryKey }) => {
+          queryClient.getQueryCache().findAll({ queryKey: ['/songs-by-artistid',artist_id] }).forEach(({ queryKey }) => {
             queryClient.setQueryData(queryKey, old => {
               if (!old) return old;
         
-              const updatedResults = old.results.map(user =>
-                user.id === userId ? { ...user, ...variables } : user
+              const updatedResults = old.results.map(song =>
+                song.id === songId ? { ...song, ...variables } : song
               );
         
               return {
@@ -43,5 +43,5 @@ const useUpdateUser = (userId,onSuccessCallback) => {
     })
   };
   
-  export default useUpdateUser;
+  export default useUpdateSongById;
   

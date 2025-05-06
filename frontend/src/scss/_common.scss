@@ -55,6 +55,8 @@
   font-size: 3.8rem;
   color: $primary-black;
   font-weight: 400;
+  text-transform: capitalize;
+
 }
 
 .cForm {
@@ -133,6 +135,7 @@
   border: none;
   transition: all 300ms ease-in-out;
   cursor: pointer;
+  height: max-content;
   &--green {
     background: $primary-green;
   }
@@ -293,11 +296,29 @@
       font-size: 2.3rem;
       color: $primary-green;
       font-weight: 600;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+
+      align-items: center;
+      span{
+        font-size: 1.8rem;
+      }
+    }
+    &__btns{
+      display: flex;
+      gap: 8px;
+      align-items: center;
     }
   }
   &__body{
     padding: 15px 20px;
     padding-top: 0px;
+    &__text{
+      margin-top: 25px;
+      font-size: 1.6rem;
+      line-height: 150%;
+    }
   }
 }
 
@@ -438,4 +459,15 @@
   gap: 20px;
   justify-content: center;
   padding-top: 24px;
+}
+
+.warning{
+  color: $light-blue;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.success{
+  color: $primary-green;
 }
