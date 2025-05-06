@@ -3,7 +3,7 @@ import AppTable from '../components/AppTable';
 import { FaEdit, FaFileExport, FaFileImport, FaMusic, FaTrash, FaUserCircle } from 'react-icons/fa';
 import { useState } from 'react';
 import Loader from '../components/Loader';
-import { formatDate, GenderEnum, hasRole, RoleEnum } from '../helpers/helpers';
+import { formatDate, GenderEnum } from '../helpers/helpers';
 import { useNavigate } from 'react-router-dom';
 import { useGetArtists } from '../hooks/useGetArtists';
 import Modal from '../components/Modal';
@@ -12,7 +12,6 @@ import ModalDeleteContent from '../components/ModalDeleteContent';
 import ImportFileModalContent from '../components/ImportFileModalContent';
 import { FaDownload } from 'react-icons/fa6';
 import { useExportArtists } from '../hooks/useExportArtist';
-import { useCurrentUser } from '../hooks/useCurrentUser';
 import { RoleGuard } from '../components/RoleGuard';
 
 function Artists() {
@@ -40,7 +39,6 @@ function Artists() {
   };
 
   const {isFetching:isExporting,mutate:exportArtistsMutate}=useExportArtists();
-  const {data:currentUser}=useCurrentUser()
 const columns = [
   {
     header: 'Artist Name',
